@@ -1,0 +1,16 @@
+
+
+button:focus {outline:0;}
+html, body {
+    height: 100%;
+    margin: 0px !important;
+    padding: 0px !important;
+    box-sizing: border-box !important;
+}
+
+
+.active {
+    color: white !important;
+}
+
+
