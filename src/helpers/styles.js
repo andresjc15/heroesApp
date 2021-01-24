@@ -6,7 +6,7 @@ export const useStyles = makeStyles((theme) => ({
     },
     appBar: {
       overflow: 'hidden',
-      position: 'sticky'
+      position: 'sticky',
     },
     navText: {
       marginRight: theme.spacing(2),
@@ -21,6 +21,10 @@ export const useStyles = makeStyles((theme) => ({
     title: {
       flexGrow: 1,
       display: 'flex',
-      userSelect: 'none'
+      userSelect: 'none',
+      alignItems: 'center',
     },
+    center: {
+      alignItems: 'center',
+    }
   }));

@@ -1,11 +1,26 @@
-import React from 'react';
+import React, { useContext } from 'react';
 
 import Button from '@material-ui/core/Button';
+import { AuthContext } from '../../auth/AuthContext';
+import { types } from '../../types/types';
 
 export const LoginScreen = ({ history }) => {
 
+    const { dispatch } = useContext( AuthContext );
+
     const handleLogin = () => {
-        history.push('/');
+
+        const lastPath = localStorage.getItem('lastPath') || '/';
+        
+         dispatch({
+             type: types.login,
+             payload: {
+                 name:'Andres'
+             }
+         });
+
+         history.replace(lastPath);
+         
     }
 
     return (

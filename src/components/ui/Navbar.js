@@ -1,17 +1,30 @@
-import { AppBar, Button, Toolbar, Typography } from '@material-ui/core'
-import React from 'react'
-import { NavLink } from 'react-router-dom';
+import { AppBar, Button, IconButton, Toolbar, Typography } from '@material-ui/core'
+import React, { useContext } from 'react'
+import { NavLink, useHistory } from 'react-router-dom';
 import { useStyles } from '../../helpers/styles';
-
-
+import '../../helpers/material/icons';
+import { Search } from '@material-ui/icons';
+import { AuthContext } from '../../auth/AuthContext';
+import { types } from '../../types/types';
 
 export const Navbar = () => {
 
     const classes = useStyles();
 
+    const { user, dispatch } = useContext(AuthContext);
+
+    const history = useHistory();
+
+    const handleLogout = () => {
+        history.replace('/login');
+        dispatch({
+            type: types.logout
+        });
+    }
+
     return (
         <>
-            <AppBar position="static" className={classes.appBar}>
+            <AppBar position="fixed" className={classes.appBar}>
                 <Toolbar>
                 <div className={classes.title}>
                 <Typography variant="h5">
@@ -19,7 +32,7 @@ export const Navbar = () => {
                         to="/" 
                         className={`${classes.navText} active`}
                     >
-                        Asociaciones
+                        HeroesApp
                     </NavLink>
                 </Typography>
                 <Typography variant="h6" >
@@ -29,7 +42,7 @@ export const Navbar = () => {
                         to="/marvel" 
                         className={classes.navText}
                     >
-                        Marvel
+                        <img className="navbar-img" src="/assets/marvel.png" alt="marvel"/>
                     </NavLink>
                     <NavLink 
                         activeClassName="active"
@@ -37,7 +50,7 @@ export const Navbar = () => {
                         to="/dc" 
                         className={classes.navText}
                     >
-                        DC
+                        <img className="navbar-img" src="/assets/dc.png" alt="dc" />
                     </NavLink>
                     <NavLink 
                         activeClassName="active"
@@ -45,19 +58,25 @@ export const Navbar = () => {
                         to="/search" 
                         className={classes.navText}
                     >
-                        Search
+                        <IconButton edge="start" className={classes.menuButton} color="inherit" aria-label="menu">
+                            <Search />
+                        </IconButton>
                     </NavLink>
                 </Typography>
+                
                 </div>
-                 
-                <NavLink 
-                        activeClassName="active"
+                <div>
+                    <span>
+                        { user.name }
+                    </span>
+                </div>
+                
+                <Button
                         className={classes.navText}
-                        exact
-                        to="/login"
+                        onClick={ handleLogout }
                 >
-                    <Button color="inherit">Logout</Button>
-                </NavLink>
+                    Logout
+                </Button>
                 </Toolbar>
             </AppBar>
         

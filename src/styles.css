@@ -8,9 +8,27 @@ html, body {
     box-sizing: border-box !important;
 }
 
+.responsive-navbar {
+    padding-top: 56px;
+    padding-bottom: 56px;
+}
 
 .active {
     color: white !important;
 }
 
+.navbar-img {
+    height: 31px;
+}
+
+.footer {
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    background-color: red;
+    color: white;
+    text-align: center;
+    z-index: 99;
+ }
 
